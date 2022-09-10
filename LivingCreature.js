@@ -1,7 +1,6 @@
 class LivingCreature {
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.multiplay = 0;
 
         this.directions = [

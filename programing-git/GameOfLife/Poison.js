@@ -1,7 +1,6 @@
 class Poison extends LivingCreature{
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        super(x,y);
 
         this.directions = [
             [this.x - 2, this.y - 2],
