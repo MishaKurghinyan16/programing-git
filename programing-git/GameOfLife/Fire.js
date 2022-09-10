@@ -1,0 +1,92 @@
+class Fire extends LivingCreature{
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.energy = 20;
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ];
+
+    }
+    getNewCoordinates() {
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ];
+    }
+    chooseCell(char) {
+        this.getNewCoordinates();
+        var found = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] == char) {
+                    found.push(this.directions[i]);
+                }
+            }
+        }
+        return found;
+    }
+
+    mul() {
+        this.energy += 5;
+        let found = this.chooseCell(1);
+        let exact = random(found);
+        if (exact && this.energy >= 12) {
+            let x = exact[0];
+            let y = exact[1];
+            matrix[y][x] = 4;
+            let fire = new Fire(x, y);
+            fireArr.push(fire);
+            this.energy = 20;
+        }
+    }
+
+    born() {
+        let found = this.chooseCell(1);
+        let exact = random(found);
+
+        if (exact) {
+            this.energy += 5;
+            let x = exact[0];
+            let y = exact[1];
+            for (var i = 0; i < grassArr.length; i++) {
+                if (x == grassArr[i].x && y == grassArr[i].y) {
+                    let fire = new Fire(x, y);
+                    fireArr.push(fire);
+                    grassArr.splice(i, 1);
+                }
+            }
+            matrix[y][x] = 4;
+        } else if (this.energy < 0) {
+            this.die();
+        } else {
+            this.energy -= 5;
+        }
+
+    }
+
+    die() {
+        for (var i = 0; i < fireArr.length; i++) {
+            if (this.x == fireArr[i].x && this.y == fireArr[i].y) {
+                fireArr.splice(i, 1)
+            }
+            matrix[this.y][this.x] = 5;
+        }
+    }
+
+}
