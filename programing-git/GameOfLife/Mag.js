@@ -1,4 +1,5 @@
-class Mag extends LivingCreature{
+var LivingCreature = require("./LivingCreature")
+module.exports = class Mag extends LivingCreature{
     constructor(x, y) {
         super(x,y);
         this.directions = [
@@ -41,7 +42,7 @@ class Mag extends LivingCreature{
     }
     move() {
         let found = this.chooseCell(0);
-        let exact = random(found);
+        let exact = found[Math.random()* found.length];
         if (exact) {
             let x = exact[0];
             let y = exact[1];

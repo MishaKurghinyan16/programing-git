@@ -1,16 +1,4 @@
-var matrix = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 2, 0, 2, 0, 0, 0, 0, ],
-    [0, 7, 0, 0, 0, 0, 3, 0, 2, 0, ],
-    [0, 0, 0, 2, 0, 0, 2, 0, 4, 0, ],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 2, 0, 0, 6, 0, 0, ],
-    [0, 0, 0, 0, 2, 3, 0, 0, 0, 6, ],
-    [0, 0, 2, 2, 2, 1, 1, 1, 1, 1, ],
-    [0, 0, 2, 2, 0, 1, 1, 1, 1, 1, ],
-]
-
+var io = io();
 
 var side = 50;
 var fireArr = [];
@@ -20,17 +8,7 @@ var huntArr = [];
 var poisonArr = [];
 var magArr = [];
 
-function gener(n, m) {
-    var matrix = []
-    for (var i = 0; i <= n; ++i) {
-        matrix.push([]);
-        for (var j = 0; j <= m; ++j) {
-            matrix[i].push(Math.round(Math.random() * 3));
-        }
-    }
-    return matrix;
 
-}
 
 
 function setup() {

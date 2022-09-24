@@ -1,4 +1,5 @@
-class Hunter extends LivingCreature{
+var LivingCreature = require("./LivingCreature")
+module.exports = class Hunter extends LivingCreature{
     constructor(x, y) {
         super(x,y);
         this.energy = 20;
@@ -43,8 +44,9 @@ class Hunter extends LivingCreature{
     eat() {
         let found = this.chooseCell(1);
         let found2 = this.chooseCell(2);
-        let exact = random(found);
-        let exact2 = random(found2);
+        let exact = found[Math.random()* found.length]
+        let exact2 = found[Math.random()* found2.length]
+
 
         if (exact) {
             this.energy += 5;

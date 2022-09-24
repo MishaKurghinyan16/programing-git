@@ -1,10 +1,12 @@
-class Grass extends LivingCreature{
+var LivingCreature = require("./LivingCreature")
+module.exports = class Grass extends LivingCreature{
     mul() {
         this.multiplay += 5;
-        let found = this.chooseCell(0);
-        let found2 = this.chooseCell(6);
-        let exact = random(found);
-        let exact2 = random(found2);
+        let found = super.chooseCell(0);
+        let found2 = super.chooseCell(6);
+        let exact = found[Math.random()* found.length]
+        let exact2 = found[Math.random()* found2.length]
+
         if (exact && this.multiplay > 1) {
             let x = exact[0];
             let y = exact[1];

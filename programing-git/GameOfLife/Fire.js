@@ -1,4 +1,5 @@
-class Fire extends LivingCreature{
+var LivingCreature = require("./LivingCreature")
+module.exports = class Fire extends LivingCreature{
     constructor(x, y) {
         super(x,y);
         this.energy = 20;
@@ -44,7 +45,7 @@ class Fire extends LivingCreature{
     mul() {
         this.energy += 5;
         let found = this.chooseCell(1);
-        let exact = random(found);
+        let exact = found[Math.random()* found.length];
         if (exact && this.energy >= 12) {
             let x = exact[0];
             let y = exact[1];

@@ -1,4 +1,6 @@
-class GrassEater extends LivingCreature{
+var LivingCreature = require("./LivingCreature")
+
+module.exports = class GrassEater extends LivingCreature{
     constructor(x, y) {
         super(x,y);
         this.energy = 20;
@@ -42,7 +44,7 @@ class GrassEater extends LivingCreature{
     }
     mul() {
         let found = this.chooseCell(0);
-        let exact = random(found);
+        let exact = found[Math.random()* found.length]
         if (exact && this.energy >= 12) {
             let x = exact[0];
             let y = exact[1];
